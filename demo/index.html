@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <title>amcv-json-editor demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../paper-card/paper-card.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../amcv-json-editor.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+      amcv-json-editor {
+        background-color: #232F3A;
+      }
+    </style>
+  </head>
+  <body unresolved>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic amcv-json-editor Demo</h3>
+      <demo-snippet>
+        <template>
+          <amcv-json-editor></amcv-json-editor>
+        </template>
+      </demo-snippet>
+    </div>
+
+  <script>
+
+
+    window.addEventListener('WebComponentsReady', function(e) {
+      console.log('components ready');
+      var selector = document.getElementsByTagName('amcv-json-editor');
+      selector.json = {
+        "glossary": {
+          "title": "example glossary",
+          "GlossDiv": {
+            "title": "S",
+            "GlossList": {
+              "GlossEntry": {
+                "ID": "SGML",
+                "SortAs": "SGML",
+                "GlossTerm": "Standard Generalized Markup Language",
+                "Acronym": "SGML",
+                "Abbrev": "ISO 8879:1986",
+                "GlossDef": {
+                  "para": "A meta-markup language, used to create markup languages such as DocBook.",
+                  "GlossSeeAlso": ["GML", "XML"]
+                },
+                "GlossSee": "markup"
+              }
+            }
+          }
+        }
+      };
+      selector.refresh();
+
+    });
+
+  </script>
+
+  </body>
+</html>
