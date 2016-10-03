@@ -7,7 +7,7 @@
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../paper-card/paper-card.html">
+    <link rel="stylesheet" type="text/css" href="jsoneditor.css">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
 
     <link rel="import" href="../amcv-json-editor.html">
@@ -24,7 +24,14 @@
       <h3>Basic amcv-json-editor Demo</h3>
       <demo-snippet>
         <template>
-          <amcv-json-editor></amcv-json-editor>
+          <amcv-json-editor json="[{
+            'array': [1, 2, 3],
+            'boolean': true,
+            'null': null,
+            'number': 123,
+            'object': { 'a': 'b', 'c': 'd' },
+            'string': 'Hello World'
+          }]"></amcv-json-editor>
         </template>
       </demo-snippet>
     </div>
@@ -34,31 +41,6 @@
 
     window.addEventListener('WebComponentsReady', function(e) {
       console.log('components ready');
-      var selector = document.getElementsByTagName('amcv-json-editor');
-      selector.json = {
-        "glossary": {
-          "title": "example glossary",
-          "GlossDiv": {
-            "title": "S",
-            "GlossList": {
-              "GlossEntry": {
-                "ID": "SGML",
-                "SortAs": "SGML",
-                "GlossTerm": "Standard Generalized Markup Language",
-                "Acronym": "SGML",
-                "Abbrev": "ISO 8879:1986",
-                "GlossDef": {
-                  "para": "A meta-markup language, used to create markup languages such as DocBook.",
-                  "GlossSeeAlso": ["GML", "XML"]
-                },
-                "GlossSee": "markup"
-              }
-            }
-          }
-        }
-      };
-      selector.refresh();
-
     });
 
   </script>

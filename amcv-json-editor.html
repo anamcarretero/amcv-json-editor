@@ -3,8 +3,6 @@
 <script src="../jsoneditor/dist/jsoneditor.min.js"></script>
 <script src="../fast-json-patch/src/json-patch-duplex.js"></script>
 
-<link rel="import" href="amcv-json-editor-styles.html">
-
 
 <!--
 `amcv-json-editor`
@@ -15,7 +13,7 @@
 
 <dom-module id="amcv-json-editor">
   <template>
-    <style include="amcv-json-editor-styles">
+    <style is="custom-style" include="amcv-json-editor-styles">
       :host {
         display: block;
       }
@@ -24,10 +22,11 @@
   </template>
 
   <script>
-    var JSONEditorAPI = ["set", "setMode", "setName", "setText", "get", "getName", "getText"];
-    var script = document._currentScript || document.currentScript;
+    (function () {
+      var JSONEditorAPI = ["set", "setMode", "setName", "setText", "get", "getName", "getText"];
+      var script = document._currentScript || document.currentScript;
 
-    Polymer({
+      Polymer({
 
       is: 'amcv-json-editor',
       properties: {
@@ -114,6 +113,12 @@
             this[JSONEditorAPI[apiNo]] = this.editor[JSONEditorAPI[apiNo]].bind(this.editor);
           }
         }
+        //Adding styles bypassing Polymer scoping
+        var url = Polymer.ResolveUrl.resolveUrl("amcv-json-editor-styles.css", script.ownerDocument.baseURI);
+        var style = document.createElement("style");
+        style.classList.add("amcv-json-editor-styles");
+        style.innerHTML = ["@import url('", url, "');"].join("");
+        Polymer.dom(this.root).appendChild(style);
       },
       detached: function () {// unobserve when detached,
         //so we will not have to perform any editor actions, it will get back to sync when re-attached
@@ -215,5 +220,6 @@
         }
       }
     });
+    }());
   </script>
 </dom-module>
